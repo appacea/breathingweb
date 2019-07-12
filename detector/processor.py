@@ -23,8 +23,8 @@ class getCustomPulseApp(object):
     def __init__(self, args):
         # Imaging device - must be a connected camera (not an ip camera or mjpeg
         # stream)
-        serial = args.serial
-        baud = args.baud
+        serial = args['serial']
+        baud = args['baud']
         self.send_serial = False
         self.send_udp = False
         if serial:
@@ -35,7 +35,7 @@ class getCustomPulseApp(object):
                 baud = int(baud)
             self.serial = Serial(port=serial, baudrate=baud)
 
-        udp = args.udp
+        udp = args['udp']
         if udp:
             self.send_udp = True
             if ":" not in udp:
@@ -178,7 +178,7 @@ class getCustomPulseApp(object):
         # set current image frame to the processor's input
         self.processor.frame_in = frame
         # process the image frame to perform all needed analysis
-        self.processor.run(self.selected_cam)
+        self.processor.run()
         # collect the output frame for display
         output_frame = self.processor.frame_out
 

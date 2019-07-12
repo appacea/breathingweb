@@ -115,17 +115,17 @@ class findFaceGetPulse(object):
         pylab.savefig("data_fft.png")
         quit()
 
-    def run(self, cam):
+    def run(self):
         self.times.append(time.time() - self.t0)
         self.frame_out = self.frame_in
         self.gray = cv2.equalizeHist(cv2.cvtColor(self.frame_in,
                                                   cv2.COLOR_BGR2GRAY))
         col = (100, 255, 100)
         if self.find_faces:
-            cv2.putText(
-                self.frame_out, "Press 'C' to change camera (current: %s)" % str(
-                    cam),
-                (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.25, col)
+          #  cv2.putText(
+          #      self.frame_out, "Press 'C' to change camera (current: %s)" % str(
+          #          cam),
+          #      (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.25, col)
             cv2.putText(
                 self.frame_out, "Press 'S' to lock face and begin",
                        (10, 50), cv2.FONT_HERSHEY_PLAIN, 1.25, col)
@@ -156,10 +156,10 @@ class findFaceGetPulse(object):
             return
         if set(self.face_rect) == set([1, 1, 2, 2]):
             return
-        cv2.putText(
-            self.frame_out, "Press 'C' to change camera (current: %s)" % str(
-                cam),
-            (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.25, col)
+        #cv2.putText(
+        #    self.frame_out, "Press 'C' to change camera (current: %s)" % str(
+        #        cam),
+        #    (10, 25), cv2.FONT_HERSHEY_PLAIN, 1.25, col)
         cv2.putText(
             self.frame_out, "Press 'S' to restart",
                    (10, 50), cv2.FONT_HERSHEY_PLAIN, 1.5, col)
